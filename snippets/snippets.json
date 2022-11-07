@@ -1,0 +1,277 @@
+{
+	"FormComponent": {
+		"prefix": "knkFormComponent",
+		"body": [
+			"import React from 'react';",
+			"import PropTypes from 'prop-types';",
+			"import { Form, Row, Col, Input, Button, Select } from 'antd';",
+			"import { formItemLayout } from '@common/const';\n",
+			"const FormItem = Form.Item;",
+			"const ${1}Form = (props) => {",
+			"\tconst { defaultValue, loading } = props;",
+			"\tconst { getFieldDecorator } = props.form;\n",
+			"\tconst handleSubmit = (e) => {",
+			"\t\tconst {onSubmit, form} = props;",
+			"\t\te.preventDefault();",
+			"\t\tlet formData = {};",
+			"\t\tform.validateFields((err, values) => {",
+			"\t\t\tif (!err) {",
+			"\t\t\t\tformData = values;",
+			"\t\t\t}",
+			"\t\t});",
+			"\t\tonSubmit(formData);",
+			"\t};\n",
+			"\treturn (",
+			"\t\t<Form onSubmit={handleSubmit}>",
+			"\t\t\t<Row>",
+			"\t\t\t\t<Col span={8}>",
+			"\t\t\t\t\t<FormItem",
+			"\t\t\t\t\t\tlabel='名称'",
+			"\t\t\t\t\t\t{...formItemLayout}",
+			"\t\t\t\t\t>",
+			"\t\t\t\t\t\t{getFieldDecorator('name', {",
+			"\t\t\t\t\t\t\tinitialValue: defaultValue.name || ''",
+			"\t\t\t\t\t\t})(",
+			"\t\t\t\t\t\t\t<Input allowClear/>",
+			"\t\t\t\t\t\t)}",
+			"\t\t\t\t\t</FormItem>",
+			"\t\t\t\t</Col>",
+			"\t\t\t\t<Col span={8}></Col>",
+			"\t\t\t\t<Col span={8}></Col>",
+			"\t\t\t\t<Col span={8}></Col>",
+			"\t\t\t\t<Col span={2} className='pull-right search-right'>",
+			"\t\t\t\t\t<FormItem>",
+			"\t\t\t\t\t\t<Button type='primary' htmlType='submit' loading={loading}>查询</Button>",
+			"\t\t\t\t\t</FormItem>",
+			"\t\t\t\t</Col>",
+			"\t\t\t</Row>",
+			"\t\t</Form>",
+			"\t);",
+			"};",
+			"${1}Form.propTypes = {",
+			"\tonSubmit: PropTypes.func,",
+			"\tform: PropTypes.object.isRequired,",
+			"\tdefaultValue: PropTypes.object,",
+			"\tloading: PropTypes.bool",
+			"};",
+			"export default Form.create(${1}Form);"
+		]
+	},
+	"TableComponent": {
+		"prefix": "knkTableComponent",
+		"body": [
+			"import React from 'react';",
+			"import propTypes from 'prop-types';",
+			"import { Table} from 'antd';",
+			"import { getProjectUrl, getPath } from '@common/tool';\n",
+			"const ${1}Table = (props) => {",
+			"\tlet { pagination } = props;",
+			"\tlet columns = [",
+			"\t\t{",
+			"\t\t\ttitle: 'id',",
+			"\t\t\tdataIndex: 'id',",
+			"\t\t\tkey: 'id',",
+			"\t\t\trender: (text)=> text ? <a href={getProjectUrl('self', getPath('${2}?id=') + text)} target='_blank' rel='noopener noreferrer'>{text}</a> : null",
+			"\t\t},",
+			"\t\t{",
+			"\t\t\ttitle: '操作',",
+			"\t\t\tdataIndex: 'operation',",
+			"\t\t\tkey: 'operation',",
+			"\t\t\twidth: 150,",
+			"\t\t\trender: (value, row) => (",
+			"\t\t\t\t<span>",
+			"\t\t\t\t\t<a",
+			"\t\t\t\t\t\tclassName='m-r'",
+			"\t\t\t\t\t\thref={getProjectUrl('self', getPath('/?id=') + row.id)}",
+			"\t\t\t\t\t\ttarget='_blank'",
+			"\t\t\t\t\t\trel='noopener noreferrer'>详情</a>",
+			"\t\t\t\t</span>",
+			"\t\t\t)",
+			"\t\t}",
+			"\t];",
+			"\tlet { loading, value, onChange } = props;",
+			"\treturn (",
+			"\t\t<div>",
+			"\t\t\t<Table",
+			"\t\t\t\tpagination={pagination}",
+			"\t\t\t\tcolumns={columns}",
+			"\t\t\t\tbordered={true}",
+			"\t\t\t\tdataSource={value.content || []}",
+			"\t\t\t\tloading={loading}",
+			"\t\t\t\tonChange={onChange}",
+			"\t\t\t/>",
+			"\t\t</div>",
+			"\t);",
+			"};",
+			"${1}Table.propTypes = {",
+			"\tvalue: propTypes.object.isRequired,",
+			"\tloading: propTypes.bool.isRequired,",
+			"\tdispatch: propTypes.func,",
+			"\tpagination: propTypes.object,",
+			"\tonChange: propTypes.func.isRequired",
+			"};",
+			"export default ${1}Table;"
+		]
+	},
+	"FormItem": {
+		"prefix": "knkFormItem",
+		"body": [
+			"<FormItem",
+			"\tlabel='${1}'",
+			"\t{...formItemLayout}",
+			">",
+			"\t{getFieldDecorator('${2}', {",
+			"\t\tinitialValue: defaultValue.${2} || ''",
+			"\t})(\n",
+			")}",
+			"</FormItem>"
+		]
+	},
+	"FormItemInput": {
+		"prefix": "knkFormItemInput",
+		"body": [
+			"<FormItem",
+			"\tlabel='${1}'",
+			"\t{...formItemLayout}",
+			">",
+			"\t{getFieldDecorator('${2}', {",
+			"\t\tinitialValue: defaultValue['${2}'] || ''",
+			"\t})(",
+			"\t\t<Input placeholder='${3}'>",
+			"\t\t</Input>",
+			"\t)}",
+			"</FormItem>"
+		]
+	},
+	"FormItemSelect": {
+		"prefix": "knkFormItemSelect",
+		"body": [
+			"<FormItem",
+			"\tlabel='${1}'",
+			"\t{...formItemLayout}",
+			">",
+			"\t{getFieldDecorator('${2}', {",
+			"\t\tinitialValue: defaultValue['${2}'] || ''",
+			"\t})(",
+			"\t\t<Select>",
+			"\t\t\t<Select.Option value={${3}}>${4}</Select.Option>",
+			"\t\t\t<Select.Option value={${5}}>${6}</Select.Option>",
+			"\t\t</Select>",
+			"\t)}",
+			"</FormItem>"
+		]
+	},
+	"FormItemEnumSelect": {
+		"prefix": "knkFormItemEnumSelect",
+		"body": [
+			"<FormItem",
+			"\tlabel='${1}'",
+			"\t{...formItemLayout}",
+			">",
+			"\t{getFieldDecorator('${2}', {",
+			"\t\tinitialValue: defaultValue['${2}'] || ''",
+			"\t})(",
+			"\t\t<Select>",
+			"\t\t\t{getEnumsArray(${3}).map((item)=>{",
+			"\t\t\t\treturn (",
+			"\t\t\t\t\t<Select.Option value={item.value} key={item.value}>{item.text}</Select.Option>",
+			"\t\t\t\t);",
+			"\t\t\t})}",
+			"\t\t</Select>",
+			"\t)}",
+			"</FormItem>"
+		]
+	},
+	"FormItemAjaxSelect": {
+		"prefix": "knkFormItemAjaxSelect",
+		"body": [
+			"<FormItem",
+			"\tlabel='${1}'",
+			"\t{...formItemLayout}",
+			">",
+			"\t{getFieldDecorator('${2}', {",
+			"\t\tinitialValue: defaultValue['${2}'] || '',",
+			"\t\trules: [{",
+			"\t\t\trequired: ${3|false, true|}, message: '${4}'",
+			"\t\t}]",
+			"\t})(",
+			"\t\t<AjaxSelect",
+			"\t\t\tapiName='${5}'",
+			"\t\t\tlistName='${6}'",
+			"\t\t\tlistValueKey='${7}'",
+			"\t\t\tlistNameKey='${8}'",
+			"\t\t/>",
+			"\t)}",
+			"</FormItem>"
+		]
+	},
+	"Select": {
+		"prefix": "knkSelect",
+		"body": [
+			"<Select>",
+			"\t<Select.Option value={${1}}>${2}</Select.Option>",
+			"\t<Select.Option value={${3}}>${4}</Select.Option>",
+			"</Select>"
+		]
+	},
+	"EnumSelect": {
+		"prefix": "knkEnumSelect",
+		"body": [
+			"<Select>",
+			"\t{getEnumsArray(${1}).map((item)=>{",
+			"\t\treturn (",
+			"\t\t\t<Select.Option value={item.value} key={item.value}>{item.text}</Select.Option>",
+			"\t\t);",
+			"\t})}",
+			"</Select>"
+		]
+	},
+	"AjaxSelect": {
+		"prefix": "knkAjaxSelect",
+		"body": [
+			"<AjaxSelect",
+			"\tapiName='${5}'",
+			"\tlistName='${6}'",
+			"\tlistValueKey='${7}'",
+			"\tlistNameKey='${8}'",
+			"/>"
+		]
+	},
+	"CommonTable": {
+		"prefix": "knkCommonTable",
+		"body": [
+			"<CommonTable",
+			"\tapiName='$1'",
+			"\tapiData={$2}",
+			"\tisShowPagination={$3}",
+			"\tcolumns={columns}",
+			"\trowKeyFun = {(record, index)=> index}",
+			"/>",
+			""
+		]
+	},
+	"Popconfirm": {
+		"prefix": "knkPopconfirm",
+		"body": [
+			"<Popconfirm placement='top' title='${1}'",
+			"\tonConfirm={() => {${2}}} ",
+			"\tokText=${3|'确定'|}",
+			"\tcancelText=${4|'取消'|}>",
+			"\t<Button type='primary'>${5}</Button>",
+			"</Popconfirm>"
+		]
+	},
+	"ModalConfirm": {
+		"prefix": "knkModalConfirm",
+		"body": [
+			"Modal.confirm({",
+			"\ttitle: ${1|'提示'|},",
+			"\tcontent: ${2},",
+			"\tokText: ${3|'确定'|},",
+			"\tonOk: () => {",
+			"\t${4}",
+			"\t}",
+			"});"
+		]
+	}
+}
