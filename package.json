@@ -6,10 +6,10 @@
   "displayName": "KNK Snippets",
   "description": "knk snippets for VS Code",
   "icon": "images/icon.png",
-  "homepage": "",
+  "homepage": "https://github.com/artdong/knk-snippets#readme",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/artdong/knk-snippets.git"
   },
   "publisher": "artd",
   "engines": {
