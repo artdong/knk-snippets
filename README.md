@@ -28,9 +28,11 @@ knkFormItemInput | FormItemInput
 knkFormItemSelect | FormItemSelect
 knkFormItemEnumSelect | FormItemEnumSelect
 knkFormItemAjaxSelect | FormItemAjaxSelect
+knkFormItemRangePicker | FormItemRangePicker
 knkSelect | Select
 knkEnumSelect | EnumSelect
 knkAjaxSelect | AjaxSelect
+knkRangePicker | RangePicker
 knkCommonTable | CommonTable
 knkPopconfirm | Popconfirm
 knkModalConfirm | ModalConfirm

@@ -205,6 +205,32 @@
 			"</FormItem>"
 		]
 	},
+    "FormItemRangePicker": {
+		"prefix": "knkFormItemRangePicker",
+		"body": [
+			"<FormItem",
+			"\tlabel='${1}'",
+			"\t{...formItemLayout}",
+			">",
+			"\t{getFieldDecorator('${2}', {",
+			"\t\tinitialValue: (defaultValue['${3}TimeBegin'] && defaultValue['${3}TimeEnd']) ? [moment(defaultValue['${3}TimeBegin'], 'YYYY-MM-DD HH:mm:ss'), moment(defaultValue['${3}TimeEnd'], 'YYYY-MM-DD HH:mm:ss')] : [],",
+            "\t\trules: [{",
+			"\t\t\trequired: ${4|false, true|}, message: '${5}',",
+            "\t\t\ttype: 'array'",
+			"\t\t}]",
+			"\t})(",
+            "\t\t<RangePicker",
+			"\t\t\tclassName='time-width'",
+			"\t\t\tformat={'YYYY-MM-DD HH:mm:ss'}",
+            "\t\t\tshowTime={{",
+            "\t\t\t\thideDisabledOptions: ${6|true,false|},",
+            "\t\t\t\tdefaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')],",
+            "\t\t\t}}",
+            "\t\t/>",
+			"\t)}",
+			"</FormItem>"
+		]
+	},
 	"Select": {
 		"prefix": "knkSelect",
 		"body": [
@@ -235,6 +261,19 @@
 			"\tlistValueKey='${7}'",
 			"\tlistNameKey='${8}'",
 			"/>"
+		]
+	},
+    "RangePicker": {
+		"prefix": "knkRangePicker",
+		"body": [
+			"<RangePicker",
+			"\tclassName='time-width'",
+			"\tformat={'YYYY-MM-DD HH:mm:ss'}",
+            "\tshowTime={{",
+            "\t\thideDisabledOptions: ${1|true,false|},",
+            "\t\tdefaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')],",
+            "\t}}",
+            "/>"
 		]
 	},
 	"CommonTable": {
